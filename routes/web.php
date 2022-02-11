@@ -11,4 +11,8 @@
 |
 */
 // use App\Http\Controllers\MainController;
-Route::get('/', 'MainController@index');
+Route::get('/', 'MainController@index')->name('index');
+Route::get('/category', 'MainController@category')->name('category');
+Route::get('/basket', 'MainController@basket')->name('basket');
+Route::get('/checkout', 'MainController@checkout')->name('checkout');
+Route::get('/popular', 'MainController@popular')->name('popular');
