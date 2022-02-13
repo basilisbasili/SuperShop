@@ -3,15 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Product;
 
 class MainController extends Controller
 {
     public function index(){
-        return view('index');
+        $productS=Product::get();
+        $category=Category::get();
+        return view('index',compact('productS','category'));
     }
 
     public function category(){
-        return view('category');
+        $productS=Product::get();
+        return view('category',compact('productS'));
     }
 
     public function basket(){
@@ -24,5 +29,12 @@ class MainController extends Controller
 
     public function checkout(){
         return view('checkout');
+    }
+
+    public function selectCat($code=null){
+        // dd($code);
+        $category=Category::where('code',$code)->first();
+        $productS=Product::where('category_id',$category->id)->get();
+        return view('category',compact('productS','category'));
     }
 }

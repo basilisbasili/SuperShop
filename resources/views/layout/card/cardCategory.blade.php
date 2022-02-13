@@ -9,9 +9,9 @@
         </ul>
       </div>
       <div class="card-body">
-        <p>Accessories</p>
-        <h4 class="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-        <p class="card-product__price">$150.00</p>
+        <p>{{$product->getCat()->name}}</p>
+        <h4 class="card-product__title"><a href="#">{{$product->name}}</a></h4>
+        <p class="card-product__price">{{$product->price}} Руб</p>
       </div>
     </div>
 </div>
