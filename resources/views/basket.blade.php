@@ -37,6 +37,9 @@
                           </tr>
                       </thead>
                       <tbody>
+                          @isset($order)
+                              
+                          
                         @foreach ($order->products as $item)
                           <tr>
                               <td>
@@ -57,7 +60,7 @@
                                     
                                
                                   <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="{{$item->count}}" title="Quantity:"
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="{{$item->pivot->count}}" title="Quantity:"
                                           class="input-text qty">
                                           {{-- Хорошие кнопки но надо настраивать --}}
                                       {{-- <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
@@ -75,10 +78,12 @@
                                     
                               </td>
                               <td>
-                                  <h5> {{$item->price}} Руб </h5>
+                                  <h5> {{$item->getPrice()}} Руб </h5>
                               </td>
                           </tr>
                           @endforeach
+                          Итого {{$order->calculate()}}
+                          @endisset
                           <tr class="bottom_button">
                               <td>
                                   <a class="button" href="#">Update Cart</a>
