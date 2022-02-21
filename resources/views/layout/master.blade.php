@@ -6,14 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aroma Shop - Home</title>
 	<link rel="icon" href="img/Fevicon.png" type="image/png">
-  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="{{ asset('vendors/bootstrap/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/fontawesome/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/themify-icons/themify-icons.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/nice-select/nice-select.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/owl-carousel/owl.theme.default.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/owl-carousel/owl.carousel.min.css') }}">
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
   <header class="header_area">
@@ -35,7 +35,6 @@
                   aria-expanded="false">Магазин</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{route('category')}}">Категории</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{route('popular')}}">Хит продаж</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('checkout')}}">Оформить заказ</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('basket')}}">Корзина</a></li>
                 </ul>

@@ -1,4 +1,4 @@
-@extends('.layout/master')
+@extends('layout/master')
 @section('contant')
     
 
@@ -10,8 +10,8 @@
 					<h1>Shopping Cart</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+              <li class="breadcrumb-item"><a href="{{route('index')}}">Главная</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Корзина</li>
             </ol>
           </nav>
 				</div>
@@ -30,13 +30,14 @@
                   <table class="table">
                       <thead>
                           <tr>
-                              <th scope="col">Product</th>
-                              <th scope="col">Price</th>
-                              <th scope="col">Quantity</th>
-                              <th scope="col">Total</th>
+                              <th scope="col">Товар</th>
+                              <th scope="col">Цена</th>
+                              <th scope="col">Количество</th>
+                              <th scope="col">Итого</th>
                           </tr>
                       </thead>
                       <tbody>
+                        @foreach ($order->products as $item)
                           <tr>
                               <td>
                                   <div class="media">
@@ -44,83 +45,40 @@
                                           <img src="img/cart/cart1.png" alt="">
                                       </div>
                                       <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
+                                          <p><a href="#">{{$item->name}}</a></p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                  <h5>$360.00</h5>
+                                <p> {{$item->price}} Руб </p>
                               </td>
                               <td>
+                               
+                                    
+                               
                                   <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="{{$item->count}}" title="Quantity:"
                                           class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                          {{-- Хорошие кнопки но надо настраивать --}}
+                                      {{-- <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                          class="increase items-count " type="button"><i class="lnr lnr-chevron-up btn-primary"></i></button>
                                       <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down btn-primary"></i></button> --}}
+                                          
                                   </div>
+                                  <form action="{{route('basketRemove',$item->id)}}" method="post"> <button class='submit btn-warning'>-</button>@csrf</form>
+                                  <form action="{{route('basketAdd',$item->id)}}" method="post">
+                                        <button class='submit btn-primary'>+</button>
+                                        @csrf
+                                  </form>
+                                    
+                                    
                               </td>
                               <td>
-                                  <h5>$720.00</h5>
+                                  <h5> {{$item->price}} Руб </h5>
                               </td>
                           </tr>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/cart/cart2.png" alt="">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>$360.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>$720.00</h5>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/cart/cart3.png" alt="">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>$360.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>$720.00</h5>
-                              </td>
-                          </tr>
+                          @endforeach
                           <tr class="bottom_button">
                               <td>
                                   <a class="button" href="#">Update Cart</a>
@@ -139,20 +97,7 @@
                                   </div>
                               </td>
                           </tr>
-                          <tr>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                  <h5>Subtotal</h5>
-                              </td>
-                              <td>
-                                  <h5>$2160.00</h5>
-                              </td>
-                          </tr>
+              
                           <tr class="shipping_area">
                               <td class="d-none d-md-block">
 

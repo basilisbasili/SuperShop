@@ -36,13 +36,11 @@
                   <li class="common-filter">
                     <form action="#">
                       <ul>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men"><a href="{{route ('selectCat','menWhatch')}}">Мужские</a><span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="women" name="brand"><label for="women"><a href="{{route ('selectCat','womenWhatch')}}">Женские</a><span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories" name="brand"><label for="accessories">Accessories<span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear" name="brand"><label for="footwear">Footwear<span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="bayItem" name="brand"><label for="bayItem">Bay item<span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="electronics" name="brand"><label for="electronics">Electronics<span> (3600)</span></label></li>
-                        <li class="filter-list"><input class="pixel-radio" type="radio" id="food" name="brand"><label for="food">Food<span> (3600)</span></label></li>
+                        {{-- @dd($categorys); --}}
+                        @foreach ($categorys as $item)
+                       
+                          <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men"><a href="{{route ('selectCat',$item->code)}}">{{$item->name}}</a><span> (10)</span></label></li>
+                        @endforeach
                       </ul>
                     </form>
                   </li>
@@ -125,11 +123,11 @@
                   
                   @if (isset($productS))
                    @foreach ($productS as $product)
-                      @include('layout/card/cardCategory',compact('product','category'))
+                      @include('layout/card/card',compact('product'))
                     @endforeach
                   @else
                     @foreach ($productS as $product)
-                      @include('layout/card/cardCategory',compact('product'))
+                      @include('layout/card/card',compact('product'))
                     @endforeach
                   @endif
                   
@@ -154,41 +152,16 @@
             <h2>Top <span class="section-intro__style">Product</span></h2>
           </div>
                 <div class="row mt-30">
-            <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-              <div class="single-search-product-wrapper">
-                @for ($i = 0; $i < 3; $i++)
-                    @include('layout/card/smallCard')  
-                @endfor                
-              </div>
-            </div>
-    
-            <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-              <div class="single-search-product-wrapper">
-                
-                  @for ($i = 0; $i < 3; $i++)
-                    @include('layout/card/smallCard')  
-                  @endfor   
-              </div>
-            </div>
-    
-            <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-              <div class="single-search-product-wrapper">
-                
-                  @for ($i = 0; $i < 3; $i++)
-                    @include('layout/card/smallCard')  
-                  @endfor   
-              </div>
-            </div>
-    
-            <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-              <div class="single-search-product-wrapper">
-                @for ($i = 0; $i < 3; $i++)
-                    @include('layout/card/smallCard')  
-                            
-                  @endfor   
-              </div>
-            </div>
-          </div>
+                  @for ($k = 0; $k < 4; $k++)
+                    <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
+                      <div class="single-search-product-wrapper">
+                        @for ($i = 0; $i < 3; $i++)
+                            @include('layout/card/smallCard')  
+                        @endfor                
+                      </div>
+                    </div>
+                  @endfor
+                </div>
             </div>
         </section>
         <!-- ================ top product area end ================= -->		

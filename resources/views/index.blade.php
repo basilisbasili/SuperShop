@@ -66,7 +66,7 @@
         <div class="row"> 
 
           @foreach ($productS as $product)
-            @include('layout/card/cardindex',compact('product','category'))
+            @include('layout/card/card',compact('product'))
           @endforeach
 
 

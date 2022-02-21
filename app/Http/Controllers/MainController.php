@@ -16,15 +16,23 @@ class MainController extends Controller
 
     public function category(){
         $productS=Product::get();
-        return view('category',compact('productS'));
+        $categorys=Category::get();
+        // dd($category); 
+        return view('category',compact('productS','categorys'));
     }
 
     public function basket(){
         return view('basket');
     }
+    
+    public function basketAdd(){
+        return view('basket/add/{id}');
+    }
 
-    public function popular(){
-        return view('popular');
+    public function detal($Pid){
+        $product=Product::find($Pid);
+        // dd($product);
+        return view('detal',compact('product'));
     }
 
     public function checkout(){
@@ -32,9 +40,11 @@ class MainController extends Controller
     }
 
     public function selectCat($code=null){
-        // dd($code);
         $category=Category::where('code',$code)->first();
+        $categorys=Category::get();
+        // dd($code,$category);
+
         $productS=Product::where('category_id',$category->id)->get();
-        return view('category',compact('productS','category'));
+        return view('category',compact('productS','categorys'));
     }
 }

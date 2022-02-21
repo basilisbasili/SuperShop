@@ -12,6 +12,11 @@ class Product extends Model
         return $category;
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 
 }
 

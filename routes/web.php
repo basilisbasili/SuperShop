@@ -12,8 +12,17 @@
 */
 // use App\Http\Controllers\MainController;
 Route::get('/', 'MainController@index')->name('index');
+
 Route::get('/category', 'MainController@category')->name('category');
+
 Route::get('/basket', 'BasketController@basket')->name('basket');
+
+Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
+
+Route::post('/basket/rem/{id}', 'BasketController@basketRemove')->name('basketRemove');
+
 Route::get('/checkout', 'BasketController@checkout')->name('checkout');
-Route::get('/popular', 'MainController@popular')->name('popular');
+
+Route::get('/category/{id}', 'MainController@detal')->name('detal');
+
 Route::get('/{code}', 'MainController@selectCat')->name('selectCat');
