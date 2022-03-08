@@ -33,6 +33,7 @@
               <li class="nav-item active submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Магазин</a>
+				  
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{{route('category')}}">Категории</a></li>
                   <li class="nav-item"><a class="nav-link" href="{{route('checkout')}}">Оформить заказ</a></li>
@@ -51,8 +52,11 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Pages</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+					@guest
+						<li class="nav-item"><a class="nav-link" href="{{route('login')}}">Войти</a></li>
+                    	<li class="nav-item"><a class="nav-link" href="{{route('register')}}">Зарегистрироваться</a></li>
+				    @endguest
+    
                   <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
                 </ul>
               </li>
@@ -63,6 +67,10 @@
               <li class="nav-item"><button><i class="ti-search"></i></button></li>
               <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
               <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
+			  
+				  @auth
+				  <li class="nav-item"><a class="nav-link" href="{{route('get-logout')}}">Выйти</a></li>
+				  @endauth
             </ul>
           </div>
         </div>

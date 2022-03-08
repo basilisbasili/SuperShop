@@ -7,6 +7,11 @@
   <main class="site-main">
     
     <!--================ Hero banner start =================-->
+    @if (session()->has('succses'))
+        {{session()->get('succses')}}
+    
+        
+    @endif
     <section class="hero-banner">
       <div class="container">
         <div class="row no-gutters align-items-center pt-60px">

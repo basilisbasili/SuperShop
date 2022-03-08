@@ -24,6 +24,8 @@ class MainController extends Controller
     public function basket(){
         return view('basket');
     }
+
+
     
     public function basketAdd(){
         return view('basket/add/{id}');
@@ -35,9 +37,7 @@ class MainController extends Controller
         return view('detal',compact('product'));
     }
 
-    public function checkout(){
-        return view('checkout');
-    }
+
 
     public function selectCat($code=null){
         $category=Category::where('code',$code)->first();
@@ -47,4 +47,6 @@ class MainController extends Controller
         $productS=Product::where('category_id',$category->id)->get();
         return view('category',compact('productS','categorys'));
     }
+
+
 }

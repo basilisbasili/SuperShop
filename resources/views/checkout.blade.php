@@ -6,7 +6,7 @@
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Product Checkout</h1>
+					<h1>Оформление</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -59,7 +59,8 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h3>Billing Details</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                   
+                    <form class="row contact_form" action="{{route('shop')}}" method="post" novalidate="novalidate">
                         <div class="col-md-6 form-group p_star">
                             <input type="text" class="form-control" id="first" name="name">
                             <span class="placeholder" data-placeholder="First name"></span>
@@ -122,21 +123,30 @@
                             </div>
                             <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
                         </div>
-                    </form>
+
+                        <<button class="button button-paypal submit" >Оплатить</button>@csrf</form>
                 </div>
                 <div class="col-lg-4">
                     <div class="order_box">
-                        <h2>Your Order</h2>
+                        <h2>Ваш заказ</h2>
                         <ul class="list">
-                            <li><a href="#"><h4>Product <span>Total</span></h4></a></li>
-                            <li><a href="#">Fresh Blackberry <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#"><h4>Продукт <span>Итого</span></h4></a></li>
+                           @isset($order)
+                           @foreach ($order->products as $item)
+                                <li><a href="#">{{$item->name}} <span class="middle">x {{$item->pivot->count}}</span> <span class="last">{{$item->getPrice()}} руб</span></a></li>
+                           @endforeach
+
+                           @endisset
+                            
+                            
+{{--                             
                             <li><a href="#">Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
-                            <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li>
+                            <li><a href="#">Fresh Brocoli <span class="middle">x 02</span> <span class="last">$720.00</span></a></li> --}}
                         </ul>
                         <ul class="list list_2">
-                            <li><a href="#">Subtotal <span>$2160.00</span></a></li>
-                            <li><a href="#">Shipping <span>Flat rate: $50.00</span></a></li>
-                            <li><a href="#">Total <span>$2210.00</span></a></li>
+                            <li><a href="#">Без доставки <span> @isset($order){{$order->calculate()}}@endisset</span></a></li>
+                            <li><a href="#">Цена доставки <span>0</span></a></li>
+                            <li><a href="#">Итого <span> @isset($order){{$order->calculate()}}@endisset</span></a></li>
                         </ul>
                         <div class="payment_item">
                             <div class="radion_btn">
@@ -163,7 +173,8 @@
                             <a href="#">terms & conditions*</a>
                         </div>
                         <div class="text-center">
-                          <a class="button button-paypal" href="#">Proceed to Paypal</a>
+                            
+                          
                         </div>
                     </div>
                 </div>
