@@ -76,8 +76,12 @@
         </div>
       </nav>
     </div>
+	@if(session()->has('warning'))
+	<p class="alert alert-warning">{{ session()->get('warning') }}</p>
+	@endif
   </header>
     <!--================ End Header Menu Area =================-->
+
 
 @yield('contant')
   <!--================ Start footer Area  =================-->	
@@ -89,6 +93,7 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Our Mission</h4>
 							<p>
+								
 								So seed seed green that winged cattle in. Gathering thing made fly you're no 
 								divided deep moved us lan Gathering thing us land years living.
 							</p>

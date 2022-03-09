@@ -18,10 +18,12 @@ Auth::routes([
     'veryfy'=>false,
 ]);
 
+Route::group(['middleware'=>'isAdmin'],function(){
+    Route::get('/orders', 'OrderController@index')->name('home');
+});
 
 Route::get('/', 'MainController@index')->name('index');
 
-Route::get('/orders', 'OrderController@index')->name('home');
 
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('get-logout');
