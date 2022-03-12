@@ -18,8 +18,15 @@ Auth::routes([
     'veryfy'=>false,
 ]);
 
-Route::group(['middleware'=>'isAdmin'],function(){
-    Route::get('/orders', 'OrderController@index')->name('home');
+Route::group([
+    'middleware'=>'auth',
+    'prefix'=>'admin'
+],function(){
+    Route::group(['middleware'=>'isAdmin'],function(){
+        Route::get('/orders', 'OrderController@index')->name('home');
+
+    });
+    Route::resource('categories','categoryController');
 });
 
 Route::get('/', 'MainController@index')->name('index');

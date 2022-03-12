@@ -30,44 +30,21 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="{{route('index')}}">Главная</a></li>
-              <li class="nav-item active submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Магазин</a>
-				  
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{route('category')}}">Категории</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{route('checkout')}}">Оформить заказ</a></li>
-                  <li class="nav-item"><a class="nav-link" href="{{route('basket')}}">Корзина</a></li>
-                </ul>
-                            </li>
+        
               <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Blog</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                  <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                </ul>
+                <a href="{{route('categories.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Категории</a>
                             </li>
                             <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu">
-					@guest
-						<li class="nav-item"><a class="nav-link" href="{{route('login')}}">Войти</a></li>
-                    	<li class="nav-item"><a class="nav-link" href="{{route('register')}}">Зарегистрироваться</a></li>
-				    @endguest
-    
-                  <li class="nav-item"><a class="nav-link" href="tracking-order.html">Tracking</a></li>
-                </ul>
+                  aria-expanded="false">Товары</a>
+                
               </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+              <li class="nav-item"><a class="nav-link" href="contact.html">Заказы</a></li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><button><i class="ti-search"></i></button></li>
-              <li class="nav-item"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button> </li>
-              <li class="nav-item"><a class="button button-header" href="#">Buy Now</a></li>
-			  
+              
 				  @auth
 				  <li class="nav-item"><a class="" href="{{route('home')}}">Админка</a></li>
 				  <li class="nav-item"><a class="nav-link" href="{{route('get-logout')}}">Выйти</a></li>

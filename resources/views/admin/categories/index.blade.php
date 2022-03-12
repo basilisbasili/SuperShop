@@ -1,18 +1,16 @@
-@extends('layout/master')
+@extends('admin.master')
+
 @section('contant')
-    
+        
 
 	<!-- ================ start banner area ================= -->	
 	<section class="blog-banner-area" id="category">
 		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Shopping Cart</h1>
+					<h1>Таблица заказов</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="{{route('index')}}">Главная</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Корзина</li>
-            </ol>
+
           </nav>
 				</div>
 			</div>
@@ -30,52 +28,49 @@
                   <table class="table">
                       <thead>
                           <tr>
+                              <th scope="col">Id</th>
+                              <th scope="col">Код</th>
                               <th scope="col">Имя</th>
-                              <th scope="col">Телефон</th>
-                              <th scope="col">Время</th>
                         
-                              <th scope="col">Итого</th>
+                              <th scope="col" colspan="3" class="text-center">Действия</th>
                           </tr>
                       </thead>
                       <tbody>
-                          @isset($orders)
+                          @isset($categories)
                               
                           
-                        @foreach ($orders as $item)
+                        @foreach ($categories as $category)
                           <tr>
                               <td>
                                   <div class="media">
                                      
                                       <div class="media-body">
-                                          <p><a href="#">{{$item->name}}</a></p>
+                                          <p><a href="#">{{$category->id}}</a></p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                <p> {{$item->phone}} </p>
+                                <p> {{$category->code}} </p>
                               </td>
                               <td>
-                                <p> {{$item->created_at->format('H:i:s d/m/Y')}} </p>
+                                <p> {{$category->name}} </p>
                               </td>
                               <td>
-                               
-                                    
-                               
-                                  <div class="product_count">
+                                <a href="{{ route('categories.show',$category)}}" type="button" class="btn btn-success">Открыть</a>
+                               {{-- <form action="" method="post"><button type="submit" class="btn btn-success">Открыть</button></form> --}}
+                              </td>
+                              <td>
+                                <a href="{{ route('categories.edit',$category)}}" type="button" class="btn btn-warning">редактировать</a>
 
-                                    <p> {{$item->calculate()}} руб
-                                     </p>
-                                  </div>
 
-                                    
-                                    
-                              </td>
-                              <td>
-                                  {{-- <h5> {{$item->getPrice()}} Руб </h5> --}}
-                              </td>
+                               </td>  
+                               <td>
+                                <form action="{{route('categories.destroy',$category)}}" method="post"> @method("DELETE") @csrf <button type="submit"  class="btn btn-danger">Удалить</button></form>
+                               </td>
                           </tr>
                           @endforeach
-                          {{-- Итого {{$order->calculate()}} --}}
+                            
+                          
                           @endisset
 
               
@@ -83,7 +78,9 @@
                           </tr>
                       </tbody>
                   </table>
-              </div>
+                  <a href="{{ route('categories.create')}}" type="button" class="btn btn-success">Добавить категорию</a>
+
+                </div>
           </div>
       </div>
   </section>
