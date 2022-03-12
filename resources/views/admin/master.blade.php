@@ -36,11 +36,11 @@
                   aria-expanded="false">Категории</a>
                             </li>
                             <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a href="{{route('products.index')}}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Товары</a>
                 
               </li>
-              <li class="nav-item"><a class="nav-link" href="contact.html">Заказы</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('home')}}">Заказы</a></li>
             </ul>
 
             <ul class="nav-shop">
